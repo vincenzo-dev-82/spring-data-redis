@@ -1,5 +1,6 @@
 package com.vincenzo.redis.config;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
@@ -12,31 +13,31 @@ import java.awt.print.Book;
 @Configuration
 public class RedisConfig {
 
-    private final RedisProperty redisProperty;
+    private final RedisProperties redisProperties;
 
-    public RedisConfig(RedisProperty redisProperty) {
-        this.redisProperty = redisProperty;
+    public RedisConfig(RedisProperties redisProperties) {
+        this.redisProperties = redisProperties;
     }
 
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
 
         RedisStandaloneConfiguration redisStandaloneConfiguration =
-                new RedisStandaloneConfiguration(redisProperty.getHost(), redisProperty.getPort());
+                new RedisStandaloneConfiguration(redisProperties.getHost(), redisProperties.getPort());
 //        redisStandaloneConfiguration.setPassword(redisProperties.getPassword());
         return new LettuceConnectionFactory(redisStandaloneConfiguration);
     }
 
-    @Bean("redisTemplateWithByte")
-    public RedisTemplate<?, ?> redisTemplateWithByte() {
+    @Bean
+    public RedisTemplate<?, ?> defaultRedisTemplate() {
         RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         return redisTemplate;
     }
 
-    @Bean("redisTemplateWithString")
-    public RedisTemplate<String, Object> redisTemplateWithString() {
-        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+    @Bean
+    public RedisTemplate<String, String> myStringRedisTemplate() {
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new StringRedisSerializer());

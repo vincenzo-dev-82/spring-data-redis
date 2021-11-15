@@ -1,8 +1,8 @@
-package com.vincenzo.redis;
+package com.vincenzo.redis.config;
 
-import com.vincenzo.redis.config.RedisProperty;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,12 +11,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RedisPropertyTest {
 
     @Autowired
-    RedisProperty redisProperty;
+    RedisProperties redisProperties;
 
     @Test
     public void test() {
-        String host = redisProperty.getHost();
-        int port = redisProperty.getPort();
+        String host = redisProperties.getHost();
+        int port = redisProperties.getPort();
 
         assertEquals(host, "localhost");
         assertEquals(port, 6379);

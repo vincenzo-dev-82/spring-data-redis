@@ -29,9 +29,12 @@
 
 
 # Reference
+
 ## Exception cases
 ```
 Unable to find a @SpringBootConfiguration, you need to use @ContextConfiguration or @SpringBootTest(classes=...) with your test
 ```
 - https://kwonnam.pe.kr/wiki/springframework/springboot/test
-- 
+
+## M1 맥북에서 Embedded Rdis 사용하기.
+- https://velog.io/@hakjong/ARM-Mac-M1-%EC%97%90%EC%84%9C-embedded-redis-%EC%82%AC%EC%9A%A9
