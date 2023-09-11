@@ -3,3 +3,13 @@ spring:
   redis:
     host: localhost
     port: 6379
+#  redis:
+#    cluster:
+#      nodes: 127.0.0.1:6379,127.0.0.1:6380,127.0.0.1:6381
+#    timeout: 3000ms
+#    connect-timeout: 3000ms
+#    lettuce:
+#      cluster:
+#        refresh:
+#          adaptive: true
+#          period: 60s
